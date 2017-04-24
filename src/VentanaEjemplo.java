@@ -1,5 +1,6 @@
 import java.awt.EventQueue;
 
+import javax.swing.JOptionPane;
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -25,6 +26,7 @@ public class VentanaEjemplo {
 	private JTextField txtfApellido;
 	private JTextField txtMostrarNombre;
 	private JTextField txtMostrarApellido;
+	private JButton btnSalir;
 
 	/**
 	 * Launch the application.
@@ -55,7 +57,7 @@ public class VentanaEjemplo {
 	private void initialize() {
 		frmEjemploDeManejo = new JFrame();
 		frmEjemploDeManejo.setTitle("ejemplo de manejo datos en base datos");
-		frmEjemploDeManejo.setBounds(100, 100, 525, 593);
+		frmEjemploDeManejo.setBounds(100, 100, 525, 616);
 		frmEjemploDeManejo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -108,31 +110,44 @@ public class VentanaEjemplo {
 		txtMostrarApellido = new JTextField();
 		txtMostrarApellido.setColumns(10);
 		
+		btnSalir = new JButton("SALIR");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (JOptionPane.showConfirmDialog(btnSalir, "¿Desea realmente salir del sistema?",
+		                "Salir del sistema", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+		            System.exit(0);
+			}
+		});
+		
 		GroupLayout groupLayout = new GroupLayout(frmEjemploDeManejo.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(51)
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
-								.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-									.addComponent(txtfNombre, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-									.addComponent(txtfApellido, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE))
-								.addComponent(btnInsertar, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(btnModificar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(btnEliminar, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
 							.addContainerGap()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblApellidos)
-								.addComponent(lblNombre))
-							.addGap(18)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(txtMostrarNombre, GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
-								.addComponent(txtMostrarApellido, GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE))))
+							.addComponent(btnSalir))
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+							.addGroup(groupLayout.createSequentialGroup()
+								.addGap(51)
+								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+									.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+									.addGroup(groupLayout.createSequentialGroup()
+										.addComponent(txtfNombre, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+										.addComponent(txtfApellido, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE))
+									.addComponent(btnInsertar, GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+									.addComponent(btnModificar, GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+									.addComponent(btnEliminar, GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)))
+							.addGroup(groupLayout.createSequentialGroup()
+								.addContainerGap()
+								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+									.addComponent(lblApellidos)
+									.addComponent(lblNombre))
+								.addGap(18)
+								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+									.addComponent(txtMostrarNombre, GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
+									.addComponent(txtMostrarApellido, GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)))))
 					.addGap(63))
 		);
 		groupLayout.setVerticalGroup(
@@ -158,7 +173,9 @@ public class VentanaEjemplo {
 					.addComponent(btnModificar)
 					.addGap(18)
 					.addComponent(btnEliminar)
-					.addContainerGap(61, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+					.addComponent(btnSalir)
+					.addContainerGap())
 		);
 		
 		Mitabla = new JTable();
